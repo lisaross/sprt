@@ -6,10 +6,18 @@
     "start": "webpack-dev-server --config=webpack.dev.js --open",
     "build": "webpack --config=webpack.dev.js"
   },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "maintained node versions",
+    "not dead"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
     "extract-loader": "^3.1.0",
@@ -21,5 +29,8 @@
     "webpack-cli": "^3.3.1",
     "webpack-dev-server": "^3.3.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "core-js": "3"
+  }
 }

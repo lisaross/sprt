@@ -1,5 +1,5 @@
 require('webpack-hot-middleware/client?reload=true');
-require('./main.css');
+require('./sass/main.scss');
 require('./views/index.pug');
 
 console.log('hello world');

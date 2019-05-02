@@ -7,7 +7,7 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "dev": "nodemon --watch config/webpack.dev.js --watch src/server src/server/main.js",
+    "dev": "nodemon --watch config --watch src/server src/server/main.js",
     "build": "rm -rf dist && webpack --config config/webpack.prod.js"
   },
   "browserslist": [

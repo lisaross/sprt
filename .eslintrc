@@ -6,15 +6,10 @@
   },
   "extends": "eslint:recommended",
   "parser": "babel-eslint",
+  "plugins": ["pug"],
   "rules": {
-    "semi": [
-      2,
-      "always"
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
+    "semi": [2, "always"],
+    "quotes": ["error", "single"],
     "no-console": "off",
     "no-restricted-syntax": [
       "error",

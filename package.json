@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --watch config --watch src/server src/server/main.js"
+    "dev": "nodemon --watch config/webpack.dev.js --watch src/server src/server/main.js",
+    "build": "webpack --config config/webpack.prod.js"
   },
   "browserslist": [
     "last 1 version",
@@ -31,7 +32,7 @@
     "webpack-cli": "^3.3.1",
     "webpack-dev-middleware": "^3.6.2",
     "webpack-dev-server": "^3.3.1",
-    "webpack-hot-middleware": "^2.24.4"
+    "webpack-merge": "^4.2.1"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",

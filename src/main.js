@@ -1,7 +1,5 @@
+require('webpack-hot-middleware/client?reload=true');
 require('./main.css');
 require('./index.html');
 
-var a = async () => {
-  await console.log('hello from the future');
-};
-a();
+console.log('hello world');

@@ -33,5 +33,5 @@ app.use((req, res, next) => {
 app.use('/', routes);
 
 const listener = app.listen(process.env.PORT || 7777, () =>
-  console.log('💻  Listening on port ' + listener.address().port)
+  console.log(`💻  Listening on PORT ${listener.address().port}`)
 );

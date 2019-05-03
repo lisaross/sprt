@@ -11,12 +11,7 @@ module.exports = merge(common, {
     hot: true
   },
   module: {
-    rules: [
-      {
-        test: /\.(sa|sc|c)ss$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
-      }
-    ]
+    rules: []
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
 });

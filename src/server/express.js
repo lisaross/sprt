@@ -1,5 +1,6 @@
 require('dotenv').config({ path: '.env' });
 const express = require('express');
+const path = require('path');
 const helpers = require('../helpers');
 const routes = require('../routes/index');
 
@@ -19,8 +20,7 @@ const app = express();
 // app.use(webpackDevMiddleware);
 // app.use(webpackHotMiddleware);
 
-app.use(webpackDevMiddleware);
-app.use(webpackHotMiddleware);
+app.use(express.static(path.join(__dirname, '../../public')));
 
 app.use(express.static('dist'));
 

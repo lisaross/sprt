@@ -5,16 +5,19 @@ const routes = require('../routes/index');
 
 const app = express();
 
-const webpack = require('webpack');
-const config = require('../../config/webpack.dev');
-const compiler = webpack(config);
+// const webpack = require('webpack');
+// const config = require('../../config/webpack.dev');
+// const compiler = webpack(config);
 
-const webpackDevMiddleware = require('webpack-dev-middleware')(
-  compiler,
-  config.devServer
-);
+// const webpackDevMiddleware = require('webpack-dev-middleware')(
+//   compiler,
+//   config.devServer
+// );
 
-const webpackHotMiddleware = require('webpack-hot-middleware')(compiler);
+// const webpackHotMiddleware = require('webpack-hot-middleware')(compiler);
+
+// app.use(webpackDevMiddleware);
+// app.use(webpackHotMiddleware);
 
 app.use(webpackDevMiddleware);
 app.use(webpackHotMiddleware);

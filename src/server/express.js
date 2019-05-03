@@ -1,12 +1,18 @@
 require('dotenv').config({ path: '.env' });
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
+
 const helpers = require('../helpers');
 const routes = require('../routes/index');
 
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../../public')));
+
+// Takes the raw requests and turns them into usable properties on req.body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views/')); // this is the folder where we keep our pug files

@@ -1,25 +1,23 @@
 require('dotenv').config({ path: '.env' });
 const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const reload = require('reload');
+
 const helpers = require('../helpers');
 const routes = require('../routes/index');
 
 const app = express();
 
-const webpack = require('webpack');
-const config = require('../../config/webpack.dev');
-const compiler = webpack(config);
+app.use(express.static(path.join(__dirname, '../../public')));
 
-const webpackDevMiddleware = require('webpack-dev-middleware')(
-  compiler,
-  config.devServer
-);
+// Takes the raw requests and turns them into usable properties on req.body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-const webpackHotMiddleware = require('webpack-hot-middleware')(compiler);
-
-app.use(webpackDevMiddleware);
-app.use(webpackHotMiddleware);
-
-app.use(express.static('dist'));
+// view engine setup
+app.set('views', path.join(__dirname, '../views/')); // this is the folder where we keep our pug files
+app.set('view engine', 'pug'); // we use the engine pug, mustache or EJS work great too
 
 // pass variables to our templates + all requests
 app.use((req, res, next) => {
@@ -32,6 +30,16 @@ app.use((req, res, next) => {
 // After allllll that above middleware, we finally handle our own routes!
 app.use('/', routes);
 
+//reload code here
+reload(app)
+  .then(function(reloadReturned) {
 const listener = app.listen(process.env.PORT || 7777, () =>
   console.log(`💻  Listening on PORT ${listener.address().port}`)
 );
+  })
+  .catch(function(err) {
+    console.error(
+      'Reload could not start, could not start server/sample app',
+      err
+    );
+  });

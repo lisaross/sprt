@@ -1,11 +1,14 @@
 const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
+// const HTMLWebpackPlugin = require('html-webpack-plugin');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 module.exports = {
-  entry: ['@babel/polyfill', './src/main.js'],
+  entry: {
+    App: './public/scripts/app.js'
+  },
   output: {
-    filename: '[name]-bundle.js',
-    path: path.resolve(__dirname, '../dist')
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, '../public', 'dist')
   },
   module: {
     rules: [
@@ -17,12 +20,31 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.html$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
           {
-            loader: 'html-loader',
+            loader: ExtractCssChunks.loader,
             options: {
-              attrs: ['img:src']
+              hot: true,
+              reloadAll: true
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
             }
           }
         ]
@@ -33,7 +55,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'images/[name].[ext]'
+              name: 'public/images/[name].[ext]'
             }
           }
         ]
@@ -42,10 +64,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new HTMLWebpackPlugin({
-      filename: 'index.html',
-      template: 'src/views/index.pug',
-      title: 'pug demo'
+    new ExtractCssChunks({
+      filename: 'style.css'
     })
   ]
 };

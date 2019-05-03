@@ -7,8 +7,13 @@
     "node": ">=7.6.0"
   },
   "scripts": {
-    "dev": "nodemon --watch config --watch src/server src/server/main.js",
-    "build": "rm -rf dist && webpack --config config/webpack.prod.js"
+    "cleanup": "rm -rf ./public/dist",
+    "start": "node ./src/server/main.js",
+    "watch": "nodemon ./src/server/main.js",
+    "dev": "concurrently 'npm run watch' 'npm run assets' --names '💻,📦' --prefix name",
+    "build": "concurrently 'npm run cleanup' 'npm run start' 'npm run assets:prod' --names '🛀,💻,📦' --prefix name",
+    "assets": "webpack --config ./config/webpack.dev.js -w --display-max-modules 0",
+    "assets:prod": "webpack --config ./config/webpack.prod.js -w --display-max-modules 0"
   },
   "browserslist": [
     "last 3 versions",
@@ -26,6 +31,7 @@
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
     "eslint-plugin-pug": "^1.1.1",
+    "extract-css-chunks-webpack-plugin": "^4.3.2",
     "file-loader": "^3.0.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
@@ -35,6 +41,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "pug-loader": "^2.4.0",
+    "reload": "^3.0.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.2.3",
@@ -48,6 +55,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "autoprefixer": "^9.5.1",
+    "concurrently": "^4.1.0",
     "core-js": "3",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",

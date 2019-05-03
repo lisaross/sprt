@@ -3,10 +3,12 @@ const path = require('path');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 module.exports = {
-  entry: ['@babel/polyfill', './src/main.js'],
+  entry: {
+    App: './public/scripts/app.js'
+  },
   output: {
-    filename: '[name]-bundle.js',
-    path: path.resolve(__dirname, '../dist')
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, '../public', 'dist')
   },
   module: {
     rules: [
@@ -53,7 +55,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'images/[name].[ext]'
+              name: 'public/images/[name].[ext]'
             }
           }
         ]

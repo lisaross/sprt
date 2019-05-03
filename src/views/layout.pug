@@ -5,7 +5,11 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    title= htmlWebpackPlugin.options.title
+    link(rel='stylesheet', href='/dist/style.css')
+    title pug
   body.testing
     .content
       block content
+
+    block scripts
+      script(src="/dist/App.bundle.js")

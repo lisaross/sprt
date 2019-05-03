@@ -22,7 +22,9 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../../public')));
 
-app.use(express.static('dist'));
+// view engine setup
+app.set('views', path.join(__dirname, '../views/')); // this is the folder where we keep our pug files
+app.set('view engine', 'pug'); // we use the engine pug, mustache or EJS work great too
 
 // pass variables to our templates + all requests
 app.use((req, res, next) => {

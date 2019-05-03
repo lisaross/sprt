@@ -9,7 +9,7 @@
   "scripts": {
     "cleanup": "rm -rf ./public/dist",
     "start": "node ./src/server/main.js",
-    "watch": "nodemon --watch config --watch public --watch src/server src/server/main.js",
+    "watch": "nodemon ./src/server/main.js",
     "dev": "concurrently 'npm run watch' 'npm run assets' --names '💻,📦' --prefix name",
     "build": "concurrently 'npm run cleanup' 'npm run start' 'npm run assets:prod' --names '🛀,💻,📦' --prefix name",
     "assets": "webpack --config ./config/webpack.dev.js -w --display-max-modules 0",

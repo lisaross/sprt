@@ -2,6 +2,7 @@ require('dotenv').config({ path: '.env' });
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const reload = require('reload');
 
 const helpers = require('../helpers');
 const routes = require('../routes/index');
@@ -29,6 +30,16 @@ app.use((req, res, next) => {
 // After allllll that above middleware, we finally handle our own routes!
 app.use('/', routes);
 
+//reload code here
+reload(app)
+  .then(function(reloadReturned) {
 const listener = app.listen(process.env.PORT || 7777, () =>
   console.log(`💻  Listening on PORT ${listener.address().port}`)
 );
+  })
+  .catch(function(err) {
+    console.error(
+      'Reload could not start, could not start server/sample app',
+      err
+    );
+  });
